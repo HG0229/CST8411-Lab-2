@@ -27,7 +27,6 @@ pipeline {
                         sh './flakey-deploy.sh'
                     }
                 }
-                exit
             }
         }
     }
