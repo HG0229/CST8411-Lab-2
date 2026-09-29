@@ -1,11 +1,10 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'maven:3.9.16-eclipse-temurin-21-alpine' } }
+    agent any
     stages {
         stage('Checkout SCM') {
             steps {
                 echo 'Checking out Repository Source Code...'
-                checkout scm
             }
         }
         
@@ -23,14 +22,6 @@ pipeline {
             steps {
                 echo 'Deploying application...'
             }
-        }
-    }
-    post {
-        success {
-            echo 'Pipeline successful!'
-        }
-        failure {
-            echo 'Pipeline failed. Inspect logs for errors.'
         }
     }
 }
