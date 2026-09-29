@@ -1,28 +1,32 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent any
+    options {
+        skipStageAfterUnstable()
+    }
     stages {
         stage('Checkout SCM') {
             steps {
-                bat '''echo Checking out Repository Source Code...'''
+                echo 'Checking out Repository Source Code...'
                 checkout scm
             }
         }
         
         stage('Build') {
             steps {
-               bat '''echo Building application...'''
+                echo 'Building application...'
+                bat './gradlew build'
             }
         }
         stage('Test') {
             steps {
-                bat '''echo Testing application...'''
-                bat 'npm test'
+                echo 'Testing application...'
+                bat './gradlew check'
             }
         }
         stage('Deploy') {
             steps {
-               bat '''echo Deploying application...'''
+               echo 'Deploying application...'
             }
         }
     }
