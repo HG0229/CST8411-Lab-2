@@ -4,23 +4,25 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                echo 'Checking out Repository Source Code...'
+                bat '''echo Checking out Repository Source Code...'''
+                checkout scm
             }
         }
         
         stage('Build') {
             steps {
-                echo 'Building application...'
+               bat '''echo Building application...'''
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing application...'
+                bat '''echo Testing application...'''
+                bat 'npm test'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
+               bat '''echo Deploying application...'''
             }
         }
     }
