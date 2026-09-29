@@ -1,12 +1,7 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent any
-    stages {
-        stage('Checkout SCM') {
-            steps {
-                echo 'Checking out Repository Source Code...'
-            }
-        }    
+    stages { 
         stage('Build') {
             steps {
                 echo 'Building application...'
